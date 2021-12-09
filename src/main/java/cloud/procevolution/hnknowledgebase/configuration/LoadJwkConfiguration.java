@@ -63,12 +63,12 @@ public class LoadJwkConfiguration {
             jwkService.generateKeys();
         }
 
-        /// just for testing and adding admin user
+        /// inital admin user
         User user = new User();
-        user.setEmail("tim.riebner@procevolution.com");
+        user.setEmail("admin@amin.com");
         user.setAccountExpired(false);
         user.setAccountLocked(false);
-        user.setPassword(this.passwordEncoder.encode("admin1234"));
+        user.setPassword(this.passwordEncoder.encode("root"));
         user.setCredentialsExpired(false);
         user.setEnabled(true);
         Role role1 = new Role();
@@ -78,26 +78,7 @@ public class LoadJwkConfiguration {
         user.setRoles(Set.of(
                 role1, role2
         ));
-
-        User user1 = new User();
-        user1.setEmail("christian@salz.de");
-        user1.setAccountExpired(false);
-        user1.setAccountLocked(false);
-        user1.setPassword(this.passwordEncoder.encode("admin1234"));
-        user1.setCredentialsExpired(false);
-        user1.setEnabled(true);
-        Role role3 = new Role();
-        role3.setName("ADMIN");
-        Role role4 = new Role();
-        role4.setName("USER");
-        user1.setRoles(Set.of(
-                role3, role4
-        ));
-
-
-        this.userRepository.deleteAll();
         this.userRepository.save(user);
-        this.userRepository.save(user1);
     }
 
 }
